@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require 'open3'
+
+Dir.glob("*.rb") do |day|
+  start = Time.now
+  output, _, _ = Open3.capture3("./#{day}")
+  elapsed_millis = ((Time.now - start) * 1000).to_i
+
+  puts "# #{day.chomp(".rb")} (took #{elapsed_millis} ms): \n#{output}\n"
+end
