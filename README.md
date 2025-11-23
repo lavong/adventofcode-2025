@@ -2,7 +2,7 @@
 
 ### run all
 ```shell
-./run_all
+./run-all
 ```
 
 ### run single day
