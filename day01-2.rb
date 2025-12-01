@@ -8,7 +8,7 @@ input.split("\n")
      .each { |line|
        rotation = line[1..].to_i
        dir = line.chr == 'L' ? -1 : 1
-       Array.new(rotation) { dir }.each do |r|
+       Array.new(rotation).each do |_|
          dial = (dial + dir) % 100
          password += dial == 0 ? 1 : 0
        end
