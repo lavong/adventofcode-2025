@@ -7,8 +7,8 @@ def invalid_id(s)
   (1...s.length).each do |i|
     s1 = s[0, i]
     s2 = s[i..]
-    # TODO make less meh.
-    (0..s.length).each { s2.chomp!(s1) }
+    # TODO make it less meh.
+    (0..(s.length / i)).each { s2.chomp!(s1) }
     if s2.length == 0
       return true
     end
