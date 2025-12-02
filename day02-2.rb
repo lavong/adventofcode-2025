@@ -8,7 +8,7 @@ def invalid_id(s)
     s1 = s[0, i]
     s2 = s[i..]
     # TODO make it less meh.
-    (0..(s.length / i)).each { s2.chomp!(s1) }
+    (0..(s.length / i)).each { break if s2.chomp!(s1) == nil }
     if s2.length == 0
       return true
     end
