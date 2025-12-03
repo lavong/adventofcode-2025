@@ -4,10 +4,9 @@ input = File.read(File.expand_path("../day03.txt", __FILE__))
 
 def max_joltage(battery, i, depth, cache)
   return 0 if i == battery.length || depth == 12
-  key = [i, depth].join
-  if cache.include? key
-    return cache[key]
-  end
+  key = [i, depth]
+  return cache[key] if cache.include? key
+
   max = max_joltage(battery, i + 1, depth, cache)
   if depth < 12
     # max = [max, "#{battery[i]}#{max_joltage(battery, i + 1, depth + 1, cache)}".chars.take(12).join.to_i].max
