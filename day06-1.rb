@@ -7,13 +7,8 @@ lines = input.split("\n").map { |line| line.split("\s") }.transpose
 grand_total = 0
 lines.each do |line|
   op = line.pop
-  nums = line.map { |n| n.to_i }
-  case op
-  when '*'
-    grand_total += nums.reduce(:*)
-  else
-    grand_total += nums.sum
-  end
+  nums = line.map(&:to_i)
+  grand_total += op == '*' ? nums.reduce(:*) : nums.sum
 end
 
 puts "solution part 1: #{grand_total}"
