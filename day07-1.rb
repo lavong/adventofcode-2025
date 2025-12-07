@@ -13,31 +13,28 @@ end
 
 grid = input.split("\n").map { |line| line.chars }
 
-start = find 'S', grid
-grid[start[0] + 1][start[1]] = '|'
+sy, sx = find 'S', grid
+grid[sy + 1][sx] = '|'
 
-beams = Set.new
-beams.add [start[0] + 1, start[1]]
+beams = Set.new([[sy + 1, sx]])
 splits = 0
 until beams.empty?
   y, x = beams.first
   beams.delete(beams.first)
+  break if y + 1 >= grid.length
 
-  if y + 1 < grid.length
-    case grid[y + 1][x]
-    when '^'
-      beams.add [y + 1, x - 1]
-      beams.add [y + 1, x + 1]
-      splits += 1
-      grid[y + 1][x - 1] = '|'
-      grid[y + 1][x + 1] = '|'
-    else
-      beams.add [y + 1, x]
-      grid[y + 1][x] = '|'
-    end
+  if grid[y + 1][x] == '^'
+    beams.add [y + 1, x - 1]
+    beams.add [y + 1, x + 1]
+    splits += 1
+    grid[y + 1][x - 1] = '|'
+    grid[y + 1][x + 1] = '|'
+  else
+    beams.add [y + 1, x]
+    grid[y + 1][x] = '|'
   end
 end
 
-grid.each { |row| puts row.join }
+grid.each { puts _1.join }
 
 puts "solution part 1: #{splits}"
