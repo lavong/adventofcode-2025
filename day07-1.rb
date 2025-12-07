@@ -12,26 +12,22 @@ def find(s, grid)
 end
 
 grid = input.split("\n").map { |line| line.chars }
-
 sy, sx = find 'S', grid
-grid[sy + 1][sx] = '|'
 
 beams = Set.new([[sy + 1, sx]])
 splits = 0
 until beams.empty?
   y, x = beams.first
   beams.delete(beams.first)
-  break if y + 1 >= grid.length
+  grid[y][x] = '|'
+  next if y + 1 >= grid.length
 
   if grid[y + 1][x] == '^'
     beams.add [y + 1, x - 1]
     beams.add [y + 1, x + 1]
     splits += 1
-    grid[y + 1][x - 1] = '|'
-    grid[y + 1][x + 1] = '|'
   else
     beams.add [y + 1, x]
-    grid[y + 1][x] = '|'
   end
 end
 
