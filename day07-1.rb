@@ -3,7 +3,7 @@
 input = File.read(File.expand_path("../day07.txt", __FILE__))
 
 def find(s, grid)
-  grid.each_with_index do |row, y|
+  grid.each_with_index do |_, y|
     grid[y].each_with_index do |c, x|
       return [y, x] if c == s
     end

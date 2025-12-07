@@ -3,7 +3,7 @@
 input = File.read(File.expand_path("../day07.txt", __FILE__))
 
 def find(s, grid)
-  grid.each_with_index do |row, y|
+  grid.each_with_index do |_, y|
     grid[y].each_with_index do |c, x|
       return [y, x] if c == s
     end
@@ -27,4 +27,4 @@ grid = input.split("\n").map { |line| line.chars }
 start = find 'S', grid
 timelines = timelines(start[0], start[1], grid, {})
 
-puts "solution part 1: #{timelines}"
+puts "solution part 2: #{timelines}"
